@@ -62,80 +62,13 @@ choco install make
    dotnet new -i .
    ```
 
-4. The template should now be installed as "MCG's ASP.NET Core Web API". The output of the install command will look similar to below:
-
-   ```shell
-   Welcome to .NET Core!
-   ---------------------
-   Learn more about .NET Core: https://aka.ms/dotnet-docs
-   Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli-docs
-
-   Telemetry
-   ---------
-   The .NET Core tools collect usage data in order to help us improve your experience. The data is anonymous and doesn't include command-line arguments. The data is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_CLI_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
-
-   Read more about .NET Core CLI Tools telemetry: https://aka.ms/dotnet-cli-telemetry
-
-   ASP.NET Core
-   ------------
-   Successfully installed the ASP.NET Core HTTPS Development Certificate.
-   To trust the certificate run 'dotnet dev-certs https --trust' (Windows and macOS only). For establishing trust on other platforms refer to the platform specific documentation.
-   For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
-   Getting ready...
-   Usage: new [options]
-
-   Options:
-     -h, --help          Displays help for this command.
-     -l, --list          Lists templates containing the specified name. If no name is specified, lists all templates.
-     -n, --name          The name for the output being created. If no name is specified, the name of the current directory is used.
-     -o, --output        Location to place the generated output.
-     -i, --install       Installs a source or a template pack.
-     -u, --uninstall     Uninstalls a source or a template pack.
-     --nuget-source      Specifies a NuGet source to use during install.
-     --type              Filters templates based on available types. Predefined values are "project", "item" or "other".
-     --force             Forces content to be generated even if it would change existing files.
-     -lang, --language   Filters templates based on language and specifies the language of the template to create.
-   ```
-
-Templates Short Name Language Tags
-
----
-
-Console Application console [C#], F#, VB Common/Console
-Class library classlib [C#], F#, VB Common/Library
-Unit Test Project mstest [C#], F#, VB Test/MSTest
-NUnit 3 Test Project nunit [C#], F#, VB Test/NUnit
-NUnit 3 Test Item nunit-test [C#], F#, VB Test/NUnit
-xUnit Test Project xunit [C#], F#, VB Test/xUnit
-Razor Page page [C#] Web/ASP.NET
-MVC ViewImports viewimports [C#] Web/ASP.NET
-MVC ViewStart viewstart [C#] Web/ASP.NET
-ASP.NET Core Empty web [C#], F# Web/Empty
-ASP.NET Core Web App (Model-View-Controller) mvc [C#], F# Web/MVC
-ASP.NET Core Web App razor [C#] Web/MVC/Razor Pages
-ASP.NET Core with Angular angular [C#] Web/MVC/SPA
-ASP.NET Core with React.js react [C#] Web/MVC/SPA
-ASP.NET Core with React.js and Redux reactredux [C#] Web/MVC/SPA
-Razor Class Library razorclasslib [C#] Web/Razor/Library/Razor Class Library
-ASP.NET Core Web API webapi [C#], F# Web/WebAPI
-MCG ASP.NET Core Web API mcgcncf [C#] WebAPI
-global.json file globaljson Config
-NuGet Config nugetconfig Config
-Web Config webconfig Config
-Solution File sln Solution
-
-Examples:
-dotnet new mvc --auth Individual
-dotnet new mcgwebsvc
-dotnet new --help
-
-````
+4. The template should now be installed as "MCG's ASP.NET Core Web API".
 
 5. If you need to reset your templates back to default, you can run this command:
 
 ```shell
 dotnet new --debug:reinit
-````
+```
 
 ---
 
@@ -214,3 +147,35 @@ dotnet run -p Acme.Example.Api/Acme.Example.Api.csproj
 Open a browser of your choice and navigate to [http://localhost:5000/swagger](http://localhost:5000/swagger). Without writing any code, you should have a working app right out of the gate:
 
 ![http://localhost:5000/swagger](img/swagger-example.png)
+
+Happy Coding!
+
+---
+
+## Contributing
+
+Any contributions to help make this template feature-rich is always welcome! Follow these instructions - originally provided by [Marc Diethelm](https://github.com/MarcDiethelm), [Contributing.md](https://github.com/MarcDiethelm/contributing/blob/master/README.md):
+
+### How to make a clean pull request
+
+Look for a project's contribution instructions. If there are any, follow them.
+
+- Create a personal fork of the project on Github.
+- Clone the fork on your local machine. Your remote repo on Github is called `origin`.
+- Add the original repository as a remote called `upstream`.
+- If you created your fork a while ago be sure to pull upstream changes into your local repository.
+- Create a new branch to work on! Branch from `develop` if it exists, else from `master`.
+- Implement/fix your feature, comment your code.
+- Follow the code style of the project, including indentation.
+- If the project has tests run them!
+- Write or adapt tests as needed.
+- Add or change the documentation as needed.
+- Squash your commits into a single commit with git's [interactive rebase](https://help.github.com/articles/interactive-rebase). Create a new branch if necessary.
+- Push your branch to your fork on Github, the remote `origin`.
+- From your fork open a pull request in the correct branch. Target the project's `develop` branch if there is one, else go for `master`!
+- …
+- If the maintainer requests further changes just push them to your branch. The PR will be updated automatically.
+- Once the pull request is approved and merged you can pull the changes from `upstream` to your local repo and delete
+  your extra branch(es).
+
+And last but not least: Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
