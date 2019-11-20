@@ -1,69 +1,181 @@
-﻿# Mcg.Webservice.Cncf Solution
+# Mcg.Webservice.Template.Cncf
 
-## Prerequisites (Windows Only)
+We at MCG are currently undergoing a focused effort to make our products and services cloud native. At this time our primary development language is C#.NET. Fortunately .NET Core’s support for cloud development is fairly robust; it supports containerization using Linux containers, and has a wide variety of APIs and libraries to support many of today's top open-source technologies.
 
-- Ensure **[Chocolatey](https://chocolatey.org/install)** is installed.
+When writing microservices using WebAPI and related technologies, one thing all services have in common are the following:
 
-- Install **[GNU Make 4.2.1](https://chocolatey.org/packages/make)**:
+- They need to be containerized;
+- They need to have robust, structured, leveled logging;
+- They need to be instrumented, i.e., performance counters;
+- A health check, or heartbeat, endpoint needs to be available for monitoring;
+- And - in my opinion - distributed tracing is an absolute must!
 
-  ```shell
-   Windows PowerShell
-   Copyright (C) Microsoft Corporation. All rights reserved.
+Setting up this “infrastructure code”, or boilerplate, can be almost as time consuming as implementing the logic that solves the business problem itself! Not only that, getting that boilerplate implemented across all services consistently can be a real challenge, especially when you may have several scrum teams working on different projects at one time. Consistency in implementing these cross-cutting concerns is equally as important for your DevOps and SysOps teams.
 
-   PS C:\> choco install make -y
-  ```
+## Some Prerequisites
 
-- _(Optional)_ **[cmder](https://cmder.net/)** A very handy, convenient terminal for Windows.  I find it useful when working with the `dotnet` commandline.
+### All Platforms
 
-  ```shell
-   Windows PowerShell
-   Copyright (C) Microsoft Corporation. All rights reserved.
+- Your development machine will need (at least at this time) both .NET Core [SDK 2.1.607](https://dotnet.microsoft.com/download/dotnet-core/2.1) and [SDK 3.0.101](https://dotnet.microsoft.com/download/dotnet-core/3.0).
 
-   PS C:\> choco install cmder -y
-  ```
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) for building and running the solution locally in a container.
 
-## Prerequesites (All Platforms,)
+- [Coverlet](https://github.com/tonerdo/coverlet?WT.mc_id=-blog-scottha#coverlet) for calculating code coverage when running the command `make test`
 
-- **[Dotnet Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1)**: v2.1 is required for Aspect-Injector to compile the apsects.
-- **[Dotnet Core 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)**: This is the SDK used to build the solution.
-- **[Coverlet](https://github.com/tonerdo/coverlet?WT.mc_id=-blog-scottha#coverlet)**: This will calculate code coverage when using the `make test` command.
+```shell
+dotnet tool install --global coverlet.console
+```
 
-  ```shell
-   Windows PowerShell
-   Copyright (C) Microsoft Corporation. All rights reserved.
+### Windows Only
 
-   PS C:\> dotnet tool install --global coverlet.console
-  ```
+- Ensure [Chocolatey](https://chocolatey.org/install) is installed. Chocolatey is a package manager for Windows and performs a similar function for it as Brew does for OSX, or APT or yum does for their respective Linux distros.
+- After installing Chocolatey, install GNU Make:
 
-- **[Docker Desktop](https://www.docker.com/products/docker-desktop)**: for building and running the solution's container.
-- **[Visual Studio Code](https://visualstudio.microsoft.com/vs/)**: for editing of Readme files and Makefiles, though not absolutely necessary.
-- (_Optional_) **[Visual Studio 2019](https://visualstudio.microsoft.com/vs/)**: If using Visual Studio, then you'll need 2019+ since it is required to open .NET Core 3.0-based solutions.
+```shell
+choco install make
+```
+
+### Optional
+
+- (OSX, Windows)[Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
+- (OSX, Windows, Linux)[Visual Studio Code](https://code.visualstudio.com/)
 
 ---
 
-## Solution Structure
+## Installing the template
 
-| **Solution Items**                                                                   | **Description**                                                                                                                 |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| **[Mcg.Webservice.Cncf.Api](./Mcg.Webservice.Cncf.Api/Readme.md)**                     | This is the core project; the project that will produce the deliverable to be deployed.                                         |
-| **[Mcg.Webservice.Cncf.UnitTests](./Mcg.Webservice.Cncf.UnitTests/Readme.md)** | This project, as the name suggests, are the **_unit tests_** for the project.                                                   |
-| [Makefile](./Makefile)                                                               | This file contains several commandline make command to make compiling, testing, and running the solution easier.                |
-| [docker-compose.yml](./docker-compose.yml)                                           | Invoke `docker-compose up` in the solution root to launch the solution in a container along with the other supporting services. |
-| [prometheus.yml](./prometheus.yml)                                                   | Configures prometheus to be able to access the container running the web service.                                               |
-|                                                                                      |                                                                                                                                 |
+1. Clone the repository into a location of your choice:
 
-## Make Commands
+   ```shell
+   git clone https://github.com/jeremyj01/mcg.webservice.template.cncf.git
+   ```
 
-| **Command**    | **Description**                                                                                               |
-| -------------- | ------------------------------------------------------------------------------------------------------------- |
-| `make`         | The default action. Causes the project to be cleaned and re-build                                             |
-| `make clean`   | Deletes the previous build                                                                                    |
-| `make restore` | Restores any missing packages                                                                                 |
-| `make build`   | Cleans, restores, builds, then launches the output binary.                                                    |
-| `make run`     | Cleans, restores, and builds a binary.                                                                        |
-| `make test`    | Cleans, restores, builds, and executes the unit tests.                                                        |
-| `make publish` | Publishes a binary build for musl (Alpine) linux                                                              |
-| `make docker`  | Creates a docker image and calls a docker-compose file to start up all supporting services and the container. |
-|                |                                                                                                               |
+2. Navigate to the template directory:
 
- :warning: On Mac you may need to use **`gmake`** instead of **`make`**
+   ```shell
+   cd mcg.webservice.template.cncf/template
+   ```
+
+3. Run the following command:
+
+   ```shell
+   dotnet new -i .
+   ```
+
+4. The template should now be installed as "MCG's ASP.NET Core Web API".
+
+5. If you need to reset your templates back to default, you can run this command:
+
+```shell
+dotnet new --debug:reinit
+```
+
+---
+
+## Creating a new solution
+
+The template is a dotnet template, not a Visual Studio template. Therefore you create a new solution from the commandline. To create a new solution with the template use the following command:
+
+```shell
+dotnet new mcgwebsvc -o [desired solution root dir name] -n [solution name]
+```
+
+For example, the following command will create a new soltion named "Acme.Example" and place it in the "Acme.Example" directory:
+
+```shell
+dotnet new mcgcncf -o Acme.Example -n Acme.Example
+```
+
+The directory structure will look like this:
+
+```shell
+<your dir>\Acme.Example
+├───Acme.Example.Api
+│   ├───Connected Services
+│   │   └───Application Insights
+│   ├───Controllers
+│   ├───DataAccess
+│   ├───Infrastructure
+│   │   ├───Configuration
+│   │   ├───DependencyTracking
+│   │   ├───HealthChecks
+│   │   ├───Logging
+│   │   └───Metrics
+│   ├───Messaging
+│   │   ├───Publishers
+│   │   └───Subscribers
+│   ├───Models
+│   ├───Properties
+│   └───Services
+└───Acme.Example.UnitTests
+    ├───ControllerTests
+    ├───InfrastructureTests
+    │   ├───ConfigurationTests
+    │   ├───HealthCheckTests
+    │   └───MetricsTests
+    ├───MessagingTests
+    ├───ModelTests
+```
+
+---
+
+## Run the solution
+
+From the terminal run the command `make run`. You should see the following output:
+
+```shell
+make run
+dotnet build Acme.Example.sln -c Debug --force --nologo
+  Restore completed in 380.78 ms for /Users/.../Acme.Example.UnitTests/Acme.Example.UnitTests.csproj.
+  Restore completed in 380.78 ms for /Users/.../Acme.Example.Api/Acme.Example.Api.csproj.
+  Acme.Example.Api -> /Users/.../Acme.Example.Api/bin/Debug/netcoreapp3.0/Acme.Example.Api.dll
+  Acme.Example.UnitTests -> /Users/.../Acme.Example.UnitTests/bin/Debug/netcoreapp3.0/Acme.Example.UnitTests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.33
+dotnet run -p Acme.Example.Api/Acme.Example.Api.csproj
+[13:20:29 INF] Initialized Tracer(ServiceName=Mcg.Webservice, Version=CSharp-0.3.6.0, Reporter=RemoteReporter(Sender=UdpSender(UdpTransport=ThriftUdpClientTransport(Client=127.0.0.1:6831))), Sampler=ConstSampler(True), IPv4=167772263, Tags=[jaeger.version, CSharp-0.3.6.0], [hostname, Slartibartfast.local], [ip, 10.0.0.103], ZipkinSharedRpcSpan=False, ExpandExceptionLogs=False, UseTraceId128Bit=False)
+[13:20:30 INF] Now listening on: http://localhost:5000
+[13:20:30 INF] Application started. Press Ctrl+C to shut down.
+[13:20:30 INF] Hosting environment: Production
+[13:20:30 INF] Content root path: /Users/.../Acme.Example.Api
+```
+
+Open a browser of your choice and navigate to [http://localhost:5000/swagger](http://localhost:5000/swagger). Without writing any code, you should have a working app right out of the gate:
+
+![http://localhost:5000/swagger](img/swagger-example.png)
+
+Happy Coding!
+
+---
+
+## Contributing
+
+Any contributions to help make this template feature-rich is always welcome! Follow these instructions - originally provided by [Marc Diethelm](https://github.com/MarcDiethelm), [Contributing.md](https://github.com/MarcDiethelm/contributing/blob/master/README.md):
+
+### How to make a clean pull request
+
+Look for a project's contribution instructions. If there are any, follow them.
+
+- Create a personal fork of the project on Github.
+- Clone the fork on your local machine. Your remote repo on Github is called `origin`.
+- Add the original repository as a remote called `upstream`.
+- If you created your fork a while ago be sure to pull upstream changes into your local repository.
+- Create a new branch to work on! Branch from `develop` if it exists, else from `master`.
+- Implement/fix your feature, comment your code.
+- Follow the code style of the project, including indentation.
+- If the project has tests run them!
+- Write or adapt tests as needed.
+- Add or change the documentation as needed.
+- Squash your commits into a single commit with git's [interactive rebase](https://help.github.com/articles/interactive-rebase). Create a new branch if necessary.
+- Push your branch to your fork on Github, the remote `origin`.
+- From your fork open a pull request in the correct branch. Target the project's `develop` branch if there is one, else go for `master`!
+- …
+- If the maintainer requests further changes just push them to your branch. The PR will be updated automatically.
+- Once the pull request is approved and merged you can pull the changes from `upstream` to your local repo and delete
+  your extra branch(es).
+
+And last but not least: Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
