@@ -211,4 +211,6 @@ dotnet run -p Acme.Example.Api/Acme.Example.Api.csproj
 [13:20:30 INF] Content root path: /Users/.../Acme.Example.Api
 ```
 
-Open a browser of your choice and navigate to [http://localhost:5000](http://localhost:5000)
+Open a browser of your choice and navigate to [http://localhost:5000/swagger](http://localhost:5000/swagger). Without writing any code, you should have a working app right out of the gate:
+
+![http://localhost:5000/swagger](img/swagger-example.png)
