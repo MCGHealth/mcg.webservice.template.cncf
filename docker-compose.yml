@@ -1,0 +1,81 @@
+version: "3"
+
+networks: 
+  cncf_network: # allows the containers to use the container name as DNS when calling other containers
+    driver: "bridge"
+
+volumes:
+  efk-volume:
+
+services:
+  api_cncf:
+    build: Mcg.Webservice.Cncf.Api/.
+    container_name: api_cncf
+    networks: 
+      - cncf_network
+    ports:
+      - "5000:80"
+    environment:
+      - APP_ASPNETCORE_ENVIRONMENT=Production
+      - APP_JAEGER_AGENT_HOST=jaeger
+      - APP_JAEGER_AGENT_PORT=6831
+      - APP_JAEGER_SERVICE_NAME=example-1
+      - APP_JAEGER_SAMPLER_TYPE=const
+      - APP_LOG_LEVEL=information
+      - APP_ELASTIC_SEARCH_URI=http://elasticsearch:9200
+      - APP_CORS_ALLOWED_URLS=*
+    depends_on:
+      - jaeger
+      - elasticsearch
+  
+  jaeger:
+    image: jaegertracing/all-in-one
+    container_name: jaeger
+    networks: 
+      - cncf_network
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "9411:9411"
+      - "14268:14268"
+      - "16686:16686"
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    networks: 
+      - cncf_network
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    networks: 
+      - cncf_network
+    ports:
+      - "3000:3000"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: elasticsearch
+    networks:
+      - cncf_network
+    ports:
+      - "9200:9200"
+    volumes:
+      - efk-volume:/usr/share/elasticsearch/data
+    
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.4
+    container_name: kibana
+    networks: 
+      - cncf_network
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch

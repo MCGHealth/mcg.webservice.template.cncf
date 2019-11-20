@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json.schemastore.org/launchsettings.json",
+    "profiles": {
+        "Mcg.Webservice": {
+            "commandName": "Project",
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "environmentVariables": {
+                "APP_CORS_ALLOWED_URLS": "*",
+                "APP_ASPNETCORE_ENVIRONMENT": "Development",
+                "APP_ELASTIC_SEARCH_URI": "http://localhost:9200",
+                "APP_JAEGER_AGENT_HOST": "localhost",
+                "APP_JAEGER_AGENT_PORT": "6831",
+                "APP_JAEGER_SAMPLER_TYPE": "const",
+                "APP_JAEGER_SERVICE_NAME": "Mcg.Webservice",
+                "APP_LOG_LEVEL": "information"
+            },
+            "applicationUrl": "http://localhost:5000"
+        }
+    }
+}

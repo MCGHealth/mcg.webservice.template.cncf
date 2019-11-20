@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mcg.Webservice.Cncf.Api", "Mcg.Webservice.Cncf.Api\Mcg.Webservice.Cncf.Api.csproj", "{BC9E2CDF-8281-479E-8DB1-75B247D15B6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74B6E5D5-41AB-4C41-B9E8-C23F42DC8AE3}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Makefile = Makefile
+		prometheus.yml = prometheus.yml
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mcg.Webservice.Cncf.UnitTests", "Mcg.Webservice.Cncf.UnitTests\Mcg.Webservice.Cncf.UnitTests.csproj", "{6DF8388B-8232-4E21-9F1C-C4AF13817343}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC9E2CDF-8281-479E-8DB1-75B247D15B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9E2CDF-8281-479E-8DB1-75B247D15B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9E2CDF-8281-479E-8DB1-75B247D15B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9E2CDF-8281-479E-8DB1-75B247D15B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF8388B-8232-4E21-9F1C-C4AF13817343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF8388B-8232-4E21-9F1C-C4AF13817343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF8388B-8232-4E21-9F1C-C4AF13817343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF8388B-8232-4E21-9F1C-C4AF13817343}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7B892BD-9CF8-41EE-B60E-88DFCA7651B9}
+	EndGlobalSection
+EndGlobal

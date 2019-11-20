@@ -1,0 +1,9 @@
+scrape_configs:  
+- job_name: api_cncf-job  
+  scrape_interval: 15s  
+  scrape_timeout: 10s  
+  metrics_path: ops/metrics  
+  scheme: http  
+  static_configs:  
+  - targets:  
+    - api_cncf
