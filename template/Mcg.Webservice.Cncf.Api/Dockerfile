@@ -9,7 +9,7 @@ WORKDIR /app
 
 ENV DOTNET_CLI_TELEMETRY_OPTOUT 1
 
-COPY Mcg.Webservice.Cncf.Api.csproj ./
+COPY *.csproj ./
 RUN dotnet restore
 
 COPY . ./
