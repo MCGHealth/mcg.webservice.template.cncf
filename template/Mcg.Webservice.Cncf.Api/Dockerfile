@@ -1,3 +1,4 @@
+
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine3.10 AS build
 
 RUN wget -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/64d8b249-f3d0-4ad9-89f9-9adfc909d3b0/aad4f4a97b6e9dcc97263d986eec1627/aspnetcore-runtime-2.1.14-linux-musl-x64.tar.gz \
@@ -27,6 +28,7 @@ ENV APP_CORS_ALLOWED_URLS=*
 
 WORKDIR /app
 EXPOSE 80 443 6831/udp 5672 5673
+
 COPY --from=build /app/out .
 
 ENTRYPOINT ["dotnet", "Mcg.Webservice.Cncf.Api.dll"] 
