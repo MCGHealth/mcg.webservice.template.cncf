@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
 		<AssemblyName>Mcg.Webservice.Cncf.Api</AssemblyName>
 		<RootNamespace>Mcg.Webservice.Cncf.Api</RootNamespace>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>latestmajor</LangVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>latestmajor</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
