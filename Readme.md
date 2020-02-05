@@ -104,9 +104,6 @@ The directory structure will look like this:
 │   │   ├───HealthChecks
 │   │   ├───Logging
 │   │   └───Metrics
-│   ├───Messaging
-│   │   ├───Publishers
-│   │   └───Subscribers
 │   ├───Models
 │   ├───Properties
 │   └───Services
