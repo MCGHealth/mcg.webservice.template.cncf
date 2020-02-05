@@ -1,5 +1,10 @@
 # Mcg.Webservice.Template.Cncf
 
+#Updates
+
+* Updated to .NET Core framework 3.1 due to extended support date (EOS December 3, 2022)
+* Updated to [AspectInjector 2.2.8](https://www.nuget.org/packages/AspectInjector/): The dependency upon .NET Core 2.1 is eliminated.  Thanks, [Oleksandr](https://github.com/pamidur)!
+
 We at MCG are currently undergoing a focused effort to make our products and services cloud native. At this time our primary development language is C#.NET. Fortunately .NET Core’s support for cloud development is fairly robust; it supports containerization using Linux containers, and has a wide variety of APIs and libraries to support many of today's top open-source technologies.
 
 When writing microservices using WebAPI and related technologies, one thing all services have in common are the following:
@@ -19,7 +24,7 @@ Setting up this “infrastructure code”, or boilerplate, can be almost as time
 
 ### All Platforms
 
-- Your development machine will need (at least at this time) both .NET Core [SDK 2.1.607](https://dotnet.microsoft.com/download/dotnet-core/2.1) and [SDK 3.0.101](https://dotnet.microsoft.com/download/dotnet-core/3.0).
+- Your development machine will need [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) for building and running the solution locally in a container.
 

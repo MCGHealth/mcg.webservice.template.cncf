@@ -19,7 +19,7 @@ run: build
 	dotnet run -p $(API)
 
 test: build
-	coverlet $(SLN).UnitTests/bin/Debug/netcoreapp3.0/$(SLN).UnitTests.dll --target "dotnet" --targetargs "test $(SLN).UnitTests/$(SLN).UnitTests.csproj --no-build"
+	dotnet test /p:CollectCoverage=true
 
 publish:
 	dotnet publish -r linux-musl-x64 -c Release -o ./$(SLN).api/publish $(API)
