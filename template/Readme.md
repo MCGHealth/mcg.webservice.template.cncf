@@ -24,8 +24,7 @@
 
 ## Prerequesites (All Platforms,)
 
-- **[Dotnet Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1)**: v2.1 is required for Aspect-Injector to compile the apsects.
-- **[Dotnet Core 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)**: This is the SDK used to build the solution.
+- **[Dotnet Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)**: This is the SDK used to build the solution.
 - **[Coverlet](https://github.com/tonerdo/coverlet?WT.mc_id=-blog-scottha#coverlet)**: This will calculate code coverage when using the `make test` command.
 
   ```shell
@@ -37,7 +36,7 @@
 
 - **[Docker Desktop](https://www.docker.com/products/docker-desktop)**: for building and running the solution's container.
 - **[Visual Studio Code](https://visualstudio.microsoft.com/vs/)**: for editing of Readme files and Makefiles, though not absolutely necessary.
-- (_Optional_) **[Visual Studio 2019](https://visualstudio.microsoft.com/vs/)**: If using Visual Studio, then you'll need 2019+ since it is required to open .NET Core 3.0-based solutions.
+- (_Optional_) **[Visual Studio 2019](https://visualstudio.microsoft.com/vs/)**: If using Visual Studio, then you'll need 2019+ since it is required to open .NET Core 3.x-based solutions.
 
 ---
 
